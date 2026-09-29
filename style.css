@@ -1,0 +1,190 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --ink: #1d1b3a;
+  --ink-2: #2b2760;
+  --teal: #5fd3cc;
+  --coral: #ff8a80;
+  --gold: #f4b400;
+  --text: #ffffff;
+  --muted: #b9b7d8;
+  --line: rgba(255, 255, 255, .18);
+  --head: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --body: "Figtree", "Segoe UI", Arial, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  min-height: 100vh;
+  padding: 40px 16px;
+  font-family: var(--body);
+  color: var(--text);
+  line-height: 1.5;
+  background:
+    radial-gradient(circle at 82% 6%, rgba(244, 180, 0, .28), transparent 40%),
+    linear-gradient(160deg, var(--ink) 20%, var(--ink-2) 100%);
+  background-attachment: fixed;
+}
+
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+h1, h2 { font-family: var(--head); line-height: 1.2; }
+button { font-family: var(--body); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ---------- Sidebar ---------- */
+h1 { font-size: 2rem; font-weight: 800; margin-bottom: 24px; }
+.side-title { font-size: 1rem; font-weight: 600; color: var(--muted); }
+
+.list-nav { list-style: none; display: grid; gap: 6px; margin: 12px 0 18px; }
+.list-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  font: 500 1rem var(--body);
+  color: var(--text);
+  text-align: left;
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+.list-btn:hover { background: rgba(255, 255, 255, .08); }
+.list-btn[aria-current="true"] { border-color: var(--gold); background: rgba(244, 180, 0, .12); }
+.list-name { overflow-wrap: anywhere; }
+.count { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.list-form { display: grid; gap: 8px; }
+
+/* ---------- Inputs and buttons ---------- */
+.field {
+  width: 100%;
+  padding: 12px 14px;
+  font: 500 1rem var(--body);
+  color: var(--text);
+  background: rgba(255, 255, 255, .06);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  color-scheme: dark;
+}
+.field::placeholder { color: var(--muted); }
+.field:focus { border-color: var(--gold); outline: none; }
+
+.btn {
+  padding: 12px 22px;
+  font: 700 1rem var(--body);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background .2s ease, transform .15s ease;
+}
+.btn:active { transform: scale(.97); }
+.btn-primary { background: var(--gold); color: var(--ink); }
+.btn-primary:hover { background: #ffc933; }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--line); }
+.btn-secondary:hover { background: rgba(255, 255, 255, .1); }
+
+.btn-small {
+  padding: 6px 12px;
+  font: 600 .9rem var(--body);
+  color: var(--text);
+  background: transparent;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+.btn-small:hover:not(:disabled) { background: rgba(255, 255, 255, .1); }
+.btn-small:disabled { opacity: .4; cursor: not-allowed; }
+.btn-danger { color: var(--coral); }
+
+/* ---------- Main panel ---------- */
+.main {
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .05);
+}
+
+.main-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.list-title { font-size: clamp(1.5rem, 4vw, 2rem); overflow-wrap: anywhere; }
+.meta { color: var(--muted); }
+.head-actions { display: flex; gap: 8px; }
+
+.task-form { display: grid; gap: 12px; margin-bottom: 24px; }
+.task-form-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.mini-label { display: grid; gap: 4px; font-size: .9rem; color: var(--muted); flex: 1 1 140px; }
+
+/* ---------- Filters ---------- */
+.filters { display: flex; gap: 8px; margin-bottom: 8px; }
+.filter {
+  padding: 6px 16px;
+  font: 600 .95rem var(--body);
+  color: var(--muted);
+  background: transparent;
+  border: 2px solid var(--line);
+  border-radius: 99px;
+  cursor: pointer;
+}
+.filter:hover { color: var(--text); }
+.filter[aria-pressed="true"] { color: var(--ink); background: var(--gold); border-color: var(--gold); }
+
+/* ---------- Tasks ---------- */
+.task-list { list-style: none; }
+.task {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 4px 14px;
+  align-items: start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.check { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--gold); cursor: pointer; }
+.task-body { min-width: 0; display: grid; gap: 2px; }
+.task-text { overflow-wrap: anywhere; }
+.done .task-text { text-decoration: line-through; color: var(--muted); }
+.due { color: var(--muted); font-size: .9rem; }
+.overdue .due { color: var(--coral); }
+.tag { margin-left: 8px; font-weight: 700; color: var(--coral); }
+.task-actions { display: flex; gap: 8px; }
+
+/* Edit row */
+.task.editing { grid-template-columns: 1fr; }
+.edit-form { display: grid; gap: 10px; }
+.edit-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+.edit-row .mini-label { flex: 1 1 130px; }
+.edit-buttons { display: flex; gap: 8px; }
+
+.empty { padding: 28px 0 8px; color: var(--muted); }
+.foot { margin-top: 20px; display: flex; justify-content: flex-end; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .layout { grid-template-columns: 1fr; gap: 24px; }
+  h1 { margin-bottom: 14px; }
+  .list-nav { display: flex; flex-wrap: wrap; }
+  .list-btn { width: auto; }
+  .list-form { grid-template-columns: 1fr auto; }
+  .task-actions { grid-column: 2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

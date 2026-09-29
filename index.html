@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>To-Do App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="layout">
+
+    <!-- LISTS -->
+    <aside class="sidebar" aria-label="Task lists">
+      <h1>To-Do</h1>
+      <h2 class="side-title">My lists</h2>
+      <ul id="list-nav" class="list-nav"></ul>
+
+      <form id="list-form" class="list-form">
+        <input id="list-input" class="field" type="text" maxlength="30" placeholder="New list name" aria-label="New list name">
+        <button type="submit" class="btn btn-secondary">Add list</button>
+      </form>
+    </aside>
+
+    <!-- TASKS -->
+    <main class="main">
+      <header class="main-head">
+        <div>
+          <h2 id="list-title" class="list-title"></h2>
+          <p id="list-meta" class="meta"></p>
+        </div>
+        <div class="head-actions">
+          <button id="rename-btn" class="btn-small" type="button">Rename list</button>
+          <button id="delete-list-btn" class="btn-small btn-danger" type="button">Delete list</button>
+        </div>
+      </header>
+
+      <form id="task-form" class="task-form">
+        <input id="task-input" class="field" type="text" maxlength="200" placeholder="What needs to be done?" aria-label="Task">
+        <div class="task-form-row">
+          <label class="mini-label">Due date
+            <input id="task-date" class="field" type="date">
+          </label>
+          <label class="mini-label">Due time
+            <input id="task-time" class="field" type="time">
+          </label>
+          <button type="submit" class="btn btn-primary">Add task</button>
+        </div>
+      </form>
+
+      <div class="filters" role="group" aria-label="Filter tasks">
+        <button type="button" class="filter" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" class="filter" data-filter="active" aria-pressed="false">Active</button>
+        <button type="button" class="filter" data-filter="completed" aria-pressed="false">Completed</button>
+      </div>
+
+      <ul id="task-list" class="task-list"></ul>
+      <p id="empty" class="empty" hidden></p>
+
+      <div class="foot">
+        <button id="clear-btn" class="btn-small" type="button">Clear completed</button>
+      </div>
+    </main>
+
+  </div>
+
+  <div id="status" class="sr-only" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
